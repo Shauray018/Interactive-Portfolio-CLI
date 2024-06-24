@@ -5,48 +5,61 @@ import chalkAnimation from 'chalk-animation';
 import figlet from 'figlet';
 import { createSpinner } from 'nanospinner';
 
-let playerName;
+let yourName;
 
 const sleep = (ms = 2000) => new Promise((r) => setTimeout(r, ms));
 
 async function welcome() {
   const rainbowTitle = chalkAnimation.rainbow(
-    "Shuaray's Portfolio \n"
+    "Shauray's Portfolio \n"
   );
 
   await sleep();
   rainbowTitle.stop();
 
   console.log(`
-    ${chalk.bgBlue('About me')} 
-    As a second-year student with hands-on experience in full-stack web development, 
-    I am eager to join a team where I can continue learning and grow under the guidance of experienced professionals. 
-    I bring project experience where I have successfully executed various web development initiatives. 
+    ${chalk.bgBlue('Instructions')} 
+    This is pretty self-explanatory.
+    You just have to go through ${chalk.bgRed('options')} that you wanna look at 
   `);
 }
 
 async function handler(answer) {
-  const spinner = createSpinner("Getting what you're looking for...").start();
+  const spinner = createSpinner("Fetching your selection...").start();
   await sleep();
 
   if (answer === 'PROJECTS') {  
-    spinner.success({ text: `Medium Clone` });
+    spinner.success({ text: chalk.blueBright('Medium Clone') });
     await sleep();
   } else if (answer === 'EDUCATION') {
-    spinner.success({ text: `Punjab Engineering College, BTech` });
+    spinner.success({ text: chalk.magentaBright('Punjab Engineering College\n') + chalk.yellow('Bachelor of Technology') });
     await sleep();
   } else if (answer === 'SKILLS') {
-    spinner.success({ text: `JavaScript (React),\n HTML/ CSS,\n Next.js,\n NoSQL (MongoDB),\n SQL (PostgreSQL),\n Tailwind CSS,\n REST APIsGit`});
+    spinner.success({ 
+      text: chalk.greenBright('Skills:\n') +
+      chalk.cyan('- JavaScript (React)\n') +
+      chalk.cyan('- HTML/CSS\n') +
+      chalk.cyan('- Next.js\n') +
+      chalk.cyan('- NoSQL (MongoDB)\n') +
+      chalk.cyan('- SQL (PostgreSQL)\n') +
+      chalk.cyan('- Tailwind CSS\n') +
+      chalk.cyan('- REST APIs\n') +
+      chalk.cyan('- Git')
+    });
     await sleep();
   } else if (answer === 'Relevant courses') {
-    spinner.success({ text: `0-100 Full Stack Web Development Course \n Data Science Methodology, IBM` });
+    spinner.success({ 
+      text: chalk.blueBright('Courses:\n') + 
+      chalk.cyan('- 0-100 Full Stack Web Development Course\n') +
+      chalk.cyan('- Data Science Methodology, IBM')
+    });
     await sleep();
   } else if (answer === 'Exit') {
     spinner.stop();
     thanksForVisiting();
     return;
   } else {
-    spinner.error({ text: `Option not recognized.` });
+    spinner.error({ text: chalk.red('Option not recognized.') });
     process.exit(1);
   }
 
@@ -55,20 +68,20 @@ async function handler(answer) {
 
 async function askName() {
   const answers = await inquirer.prompt({
-    name: 'player_name',
+    name: 'name',
     type: 'input',
     message: 'What is your name?',
     default() {
-      return 'Player';
+      return 'Guy';
     },
   });
 
-  playerName = answers.player_name;
+  yourName = answers.name;
 }
 
 function thanksForVisiting() {
   console.clear();
-  figlet(`Thanks For Visiting, ${playerName}! `, (err, data) => {
+  figlet(`Thanks For Visiting, \n ${yourName}! `, (err, data) => {
     if (err) {
       console.log('Something went wrong...');
       console.dir(err);
@@ -87,7 +100,7 @@ function thanksForVisiting() {
 
 async function resume() {
   const answers = await inquirer.prompt({
-    name: 'question_1',
+    name: 'stuff',
     type: 'list',
     message: 'What do you want to look at?',
     choices: [
@@ -99,7 +112,7 @@ async function resume() {
     ],
   });
 
-  await handler(answers.question_1);
+  await handler(answers.stuff);
 }
 
 // Run it with top-level await
