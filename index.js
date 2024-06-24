@@ -18,9 +18,10 @@ async function welcome() {
   rainbowTitle.stop();
 
   console.log(`
-    ${chalk.bgBlue('Instructions')} 
-    This is pretty self-explanatory.
-    You just have to go through ${chalk.bgRed('options')} that you wanna look at 
+    ${chalk.bgBlue('About me')} 
+    As a second-year student with hands-on experience in full-stack web development, 
+    I am eager to join a team where I can continue learning and grow under the guidance of experienced professionals. 
+    I bring project experience where I have successfully executed various web development initiatives. 
   `);
 }
 
@@ -30,12 +31,16 @@ async function handler(answer) {
 
   if (answer === 'PROJECTS') {  
     spinner.success({ text: `Medium Clone` });
+    await sleep();
   } else if (answer === 'EDUCATION') {
-    spinner.success({ text: `Bachelor's in Computer Science` });
+    spinner.success({ text: `Punjab Engineering College, BTech` });
+    await sleep();
   } else if (answer === 'SKILLS') {
     spinner.success({ text: `JavaScript (React),\n HTML/ CSS,\n Next.js,\n NoSQL (MongoDB),\n SQL (PostgreSQL),\n Tailwind CSS,\n REST APIsGit`});
+    await sleep();
   } else if (answer === 'Relevant courses') {
-    spinner.success({ text: `Web Development,\n Data Structures,\n Algorithms` });
+    spinner.success({ text: `0-100 Full Stack Web Development Course \n Data Science Methodology, IBM` });
+    await sleep();
   } else if (answer === 'Exit') {
     spinner.stop();
     thanksForVisiting();
@@ -45,7 +50,7 @@ async function handler(answer) {
     process.exit(1);
   }
 
-  await question1(); // Ask the question again after handling the option
+  await resume(); // Ask the question again after handling the option
 }
 
 async function askName() {
@@ -80,7 +85,7 @@ function thanksForVisiting() {
   });
 }
 
-async function question1() {
+async function resume() {
   const answers = await inquirer.prompt({
     name: 'question_1',
     type: 'list',
@@ -101,4 +106,4 @@ async function question1() {
 console.clear();
 await welcome();
 await askName();
-await question1();
+await resume();
