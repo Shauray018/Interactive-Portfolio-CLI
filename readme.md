@@ -28,8 +28,7 @@ An interactive Command Line Interface (CLI) portfolio presentation built using N
 
 ### Installation
 
-1. Clone the repository:
+1. Install the CLI globally using npm:
 
    ```bash
-   git clone https://github.com/yourusername/interactive-portfolio-cli.git
-   cd interactive-portfolio-cli
+   npm install -g @shauray03/portfolio
