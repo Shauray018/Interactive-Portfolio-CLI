@@ -19,13 +19,14 @@ async function welcome() {
 
   console.log(`
     ${chalk.bgBlue('Instructions')} 
-    This is pretty self-explanatory.
-    You just have to go through ${chalk.bgRed('options')} that you wanna look at 
+    As a third-year student with hands-on experience in full-stack web development, 
+    I am eager to join a team where I can continue learning and grow under the guidance of experienced professionals. 
+    I bring project experience where I have successfully executed various web development initiatives. 
   `);
 }
 
 async function handler(answer) {
-  const spinner = createSpinner("Fetching your selection...").start();
+  const spinner = createSpinner("Getting what you're looking for...").start();
   await sleep();
 
   if (answer === 'PROJECTS') {  

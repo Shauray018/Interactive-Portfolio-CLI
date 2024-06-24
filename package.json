@@ -1,6 +1,6 @@
 {
   "name": "@shauray03/portfolio",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A CLI interactive portfolio",
   "main": "index.js",
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "author": "Shauray Dhingra",
   "license": "MIT",
+  "type": "module",
   "dependencies": {
     "chalk": "^5.0.0",
     "inquirer": "^8.0.0",
